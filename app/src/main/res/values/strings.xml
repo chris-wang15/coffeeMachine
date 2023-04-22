@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Coffee Machine</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Dark Roasted Beans</string>
+    <string name="type_fragment_label">Type Fragment</string>
+    <string name="size_fragment_label">Size Fragment</string>
+    <string name="extra_fragment_label">Extra Fragment</string>
+    <string name="overview_fragment_label">Overview Fragment</string>
+    <string name="order_success_label">Success Fragment</string>
+    <string name="next">Next</string>
+    <string name="confirm">Confirm</string>
+    <string name="previous">Previous</string>
+
+    <string name="machine_id_des_rest">Tab the machine to start</string>
+    <string name="machine_id_des_loading">Loading machine...</string>
+    <string name="machine_id_des_error">Can not find machine, please try again</string>
+    <string name="machine_id_des_success">Tab again to make new order now</string>
+    <string name="show_ordered_history">Here can show your ordered history</string>
+
+    <string name="use_description_title">How does this work</string>
+    <string name="use_description">First you need to tab the central image to connect coffee machine. Then tab the central image again to start a coffee order</string>
+
+    <string name="no_result">No result</string>
+    <string name="search_no_result_sub">We couldn\'t find any available coffee type in this machine, please change another one</string>
+
+    <string name="size_selection_title">Select your size</string>
+    <string name="type_selection_title">Select your style</string>
+    <string name="extra_selection_title">Select your extra settings</string>
+    <string name="extra_brew_button">Overview your settings</string>
+
+    <string name="brew_coffee">Brew your coffee</string>
+
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

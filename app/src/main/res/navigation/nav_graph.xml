@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FirstFragment">
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.coffeeit.coffeemachine.ui.main.MainFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/first_page_to_second"
+            app:destination="@id/TypeSelectionFragment" >
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/TypeSelectionFragment"
+        android:name="com.coffeeit.coffeemachine.ui.type.TypeSelectionFragment"
+        android:label="@string/type_fragment_label"
+        tools:layout="@layout/coffee_settings_fragment">
+        <action
+            android:id="@+id/type_page_to_size_page"
+            app:destination="@id/SizeSelectionFragment" >
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/SizeSelectionFragment"
+        android:name="com.coffeeit.coffeemachine.ui.size.SizeSelectionFragment"
+        android:label="@string/size_fragment_label"
+        tools:layout="@layout/coffee_settings_fragment">
+        <action
+            android:id="@+id/size_page_to_extra_page"
+            app:destination="@id/ExtraSelectionFragment" >
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/ExtraSelectionFragment"
+        android:name="com.coffeeit.coffeemachine.ui.extra.ExtraSelectionFragment"
+        android:label="@string/extra_fragment_label"
+        tools:layout="@layout/coffee_settings_fragment">
+        <action
+            android:id="@+id/extra_page_to_overview_page"
+            app:destination="@id/OverviewFragment" >
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/OverviewFragment"
+        android:name="com.coffeeit.coffeemachine.ui.overview.OverviewFragment"
+        android:label="@string/overview_fragment_label"
+        tools:layout="@layout/coffee_settings_fragment">
+        <action
+            android:id="@+id/overview_page_to_success_page"
+            app:destination="@id/OrderSuccessFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/OverviewFragment"
+            app:popUpToInclusive="true">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/OrderSuccessFragment"
+        android:name="com.coffeeit.coffeemachine.ui.ordered.OrderSuccessFragment"
+        android:label="@string/order_success_label"
+        tools:layout="@layout/order_success_fragment">
+        <action
+            android:id="@+id/global_navigate_to_first_page"
+            app:destination="@id/FirstFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" >
+        </action>
+    </fragment>
+</navigation>

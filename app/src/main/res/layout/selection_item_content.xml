@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/selection_page_margin_bottom"
+    tools:background="@color/green">
+
+    <ImageView
+        android:id="@+id/item_img"
+        android:layout_width="@dimen/selection_icon_width"
+        android:layout_height="@dimen/selection_icon_width"
+        android:layout_marginStart="@dimen/selection_icon_margin_left"
+        android:layout_marginTop="@dimen/selection_icon_margin_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/size_medium" />
+
+    <TextView
+        android:id="@+id/item_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_height"
+        android:layout_marginStart="@dimen/selection_icon_margin_left"
+        android:layout_marginEnd="@dimen/selection_icon_margin_left"
+        android:gravity="center_vertical"
+        android:padding="@dimen/selection_item_edit_padding"
+        android:text="Edit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/selection_item_edit_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/item_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item_img" />
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/title_height"
+        android:layout_marginStart="@dimen/selection_item_margin_side"
+        android:layout_marginEnd="@dimen/selection_item_margin_side"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="@dimen/selection_item_text_size"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/item_img"
+        app:layout_constraintEnd_toStartOf="@+id/item_edit"
+        app:layout_constraintStart_toEndOf="@+id/item_img"
+        app:layout_constraintTop_toTopOf="@+id/item_img"
+        tools:text="Cappuccino" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/item_barrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="item_img, item_edit, item_title" />
+
+    <View
+        android:id="@+id/item_seperate"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/seperate_line_margin_side"
+        android:layout_marginTop="@dimen/seperate_line_margin_top"
+        android:layout_marginEnd="@dimen/seperate_line_margin_side"
+        android:background="@color/white"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/item_barrier"
+        tools:visibility="visible" />
+
+    <RadioGroup
+        android:id="@+id/sub_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/detail_recycler_margin_side"
+        android:layout_marginTop="@dimen/content_margin_top"
+        android:layout_marginEnd="@dimen/detail_recycler_margin_side"
+        android:layout_marginBottom="@dimen/selection_page_margin_bottom"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/item_seperate"
+        tools:layout_editor_absoluteX="24dp"
+        tools:visibility="visible">
+
+        <!--        <RadioButton-->
+        <!--            android:id="@+id/detail_item_check_box_1"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="24dp"-->
+        <!--            android:layout_gravity="center_vertical|end"-->
+        <!--            android:layout_marginBottom="@dimen/selection_page_margin_bottom"-->
+        <!--            android:background="@color/dark_green"-->
+        <!--            android:buttonTint="@color/white"-->
+        <!--            android:layoutDirection="rtl"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="@dimen/detail_selection_text_size"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:visibility="gone"-->
+        <!--            tools:checked="true"-->
+        <!--            tools:text="Dairy"-->
+        <!--            tools:visibility="visible" />-->
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

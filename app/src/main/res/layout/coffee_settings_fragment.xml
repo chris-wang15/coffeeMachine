@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="model"
+            type="com.coffeeit.coffeemachine.ui.base.BaseViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/no_result_view"
+            layout="@layout/search_no_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{model.noResultViewVisibility}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/type_page_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:layout_marginStart="@dimen/title_margin"
+            android:layout_marginEnd="@dimen/title_margin"
+            android:text="@string/machine_id_des_rest"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/recycler_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{model.recyclerVisibility}"
+            app:layout_constraintBottom_toTopOf="@+id/brew_button"
+            app:layout_constraintTop_toBottomOf="@+id/type_page_title">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/selection_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginStart="@dimen/selection_recycler_margin_side"
+                android:layout_marginTop="@dimen/content_margin_top"
+                android:layout_marginEnd="@dimen/selection_recycler_margin_side"
+                android:layout_marginBottom="@dimen/selection_recycler_margin_side"
+                app:layout_constraintEnd_toEndOf="@+id/recycler_container"
+                app:layout_constraintStart_toStartOf="@+id/recycler_container"
+                app:layout_constraintTop_toTopOf="@+id/recycler_container"
+                tools:itemCount="3"
+                tools:listitem="@layout/selection_item_container"
+                tools:visibility="visible" />
+
+        </FrameLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{model.loadingViewVisibility}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/brew_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/brew_button_height"
+            android:layout_marginStart="@dimen/title_margin"
+            android:layout_marginEnd="@dimen/title_margin"
+            android:layout_marginBottom="@dimen/brew_button_margin_bottom"
+            android:background="@color/green"
+            android:gravity="center_vertical"
+            android:padding="@dimen/brew_button_text_padding"
+            android:text="@string/brew_coffee"
+            android:textColor="@color/white"
+            android:textSize="@dimen/brew_button_text_size"
+            android:visibility="@{model.brewButtonVisibility}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
