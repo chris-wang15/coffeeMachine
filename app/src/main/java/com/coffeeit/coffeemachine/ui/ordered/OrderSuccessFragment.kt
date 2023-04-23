@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.coffeeit.coffeemachine.MainApp
@@ -16,7 +15,6 @@ import com.coffeeit.coffeemachine.modle.CoffeeOrder
 import com.coffeeit.coffeemachine.modle.state.DataState
 import com.coffeeit.coffeemachine.repository.MainRepository
 import com.coffeeit.coffeemachine.ui.base.BaseViewModel
-import com.coffeeit.coffeemachine.ui.base.DataViewModel
 import com.coffeeit.coffeemachine.utils.onClick
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,7 +29,6 @@ class OrderSuccessFragment : Fragment() {
     private var binding: OrderSuccessFragmentBinding? = null
     private val state = MutableStateFlow<DataState<List<CoffeeOrder>>>(DataState.Rest)
     private lateinit var coffeeOrder: CoffeeOrder
-    private val dataModel: DataViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +62,6 @@ class OrderSuccessFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding?.buttonConfirm?.onClick {
-            dataModel.resetOrder()
             view.findNavController().navigate(R.id.global_navigate_to_first_page)
         }
         binding?.textviewCurrentOrder?.text = coffeeOrder.toString()

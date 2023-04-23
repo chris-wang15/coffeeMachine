@@ -12,10 +12,37 @@
         tools:context=".ui.ordered.OrderSuccessFragment">
 
         <TextView
+            android:id="@+id/textview_current_des_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="@dimen/selection_item_edit_padding"
+            android:text="@string/current_order_des"
+            android:textColor="@color/black"
+            android:textSize="@dimen/history_des_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textview_current_order" />
+
+        <TextView
+            android:id="@+id/textview_history_des_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="@dimen/selection_item_edit_padding"
+            android:text="@string/history_order_des"
+            android:textColor="@color/black"
+            android:textSize="@dimen/history_des_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textview_first" />
+
+        <TextView
             android:id="@+id/textview_current_order"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/textview_first"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +55,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="@string/show_ordered_history"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/button_confirm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

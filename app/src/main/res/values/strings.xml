@@ -3,11 +3,11 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Dark Roasted Beans</string>
-    <string name="type_fragment_label">Type Fragment</string>
-    <string name="size_fragment_label">Size Fragment</string>
-    <string name="extra_fragment_label">Extra Fragment</string>
+    <string name="type_fragment_label">Type Settings Fragment</string>
+    <string name="size_fragment_label">Size Settings Fragment</string>
+    <string name="extra_fragment_label">Extra Settings Fragment</string>
     <string name="overview_fragment_label">Overview Fragment</string>
-    <string name="order_success_label">Success Fragment</string>
+    <string name="order_success_label">Order Confirmed</string>
     <string name="next">Next</string>
     <string name="confirm">Confirm</string>
     <string name="previous">Previous</string>
@@ -17,6 +17,8 @@
     <string name="machine_id_des_error">Can not find machine, please try again</string>
     <string name="machine_id_des_success">Tab again to make new order now</string>
     <string name="show_ordered_history">Here can show your ordered history</string>
+    <string name="history_order_des">History Orders: </string>
+    <string name="current_order_des">This is what you just ordered: </string>
 
     <string name="use_description_title">How does this work</string>
     <string name="use_description">First you need to tab the central image to connect coffee machine. Then tab the central image again to start a coffee order</string>

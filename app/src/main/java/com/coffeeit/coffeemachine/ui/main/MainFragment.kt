@@ -36,6 +36,7 @@ class MainFragment : Fragment() {
         val binding = MainFragmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        dataModel.resetOrder() // reset the coffee order to init state
         val factory = ViewModelFactory(dataModel.connectState)
         viewModel = ViewModelProvider(this, factory)[MainPageViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
