@@ -146,6 +146,10 @@ class DataViewModel : ViewModel() {
         coffeeOrder = CoffeeOrder(id)
     }
 
+    fun resetExtraInfo() {
+        coffeeOrder.extras = ArrayList()
+    }
+
     companion object {
         private const val TAG = "DataViewModel"
     }

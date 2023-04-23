@@ -34,6 +34,7 @@ class ExtraSelectionFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        dataModel.resetExtraInfo()
         binding = CoffeeSettingsFragmentBinding.inflate(inflater, container, false)
         val root: View = binding!!.root
         binding?.lifecycleOwner = viewLifecycleOwner
