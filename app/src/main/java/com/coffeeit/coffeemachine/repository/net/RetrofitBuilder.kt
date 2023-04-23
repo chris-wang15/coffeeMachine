@@ -29,6 +29,7 @@ object RetrofitBuilder {
             .build()
     }
 
+    @Deprecated("For test only, to be deleted")
     suspend fun getFakeData(): ResponseData {
         delay(1000)
         return Gson().fromJson(FAKE_INFO, ResponseData::class.java)
