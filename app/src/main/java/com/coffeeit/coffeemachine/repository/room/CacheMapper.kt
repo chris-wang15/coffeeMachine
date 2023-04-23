@@ -11,6 +11,7 @@ class CacheMapper {
             typeName = it.typeName
             sizeId = it.sizeId
             sizeName = it.sizeName
+            extras = it.extras
         }
     }
 
@@ -22,6 +23,7 @@ class CacheMapper {
             typeName = it.typeName,
             sizeId = it.sizeId,
             sizeName = it.sizeName,
+            extras = it.extras,
         )
     }
 

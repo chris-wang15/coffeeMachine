@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "eb90102dc0d0bf135b97a88d97ded823",
+    "identityHash": "9ce9a2ffe1dee8325bfbdddc695f9b37",
     "entities": [
       {
         "tableName": "order_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `machineId` TEXT NOT NULL, `typeId` TEXT NOT NULL, `typeName` TEXT NOT NULL, `sizeId` TEXT NOT NULL, `sizeName` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `machineId` TEXT NOT NULL, `typeId` TEXT NOT NULL, `typeName` TEXT NOT NULL, `sizeId` TEXT NOT NULL, `sizeName` TEXT NOT NULL, `extras` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -43,6 +43,12 @@
             "columnName": "sizeName",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "extras",
+            "columnName": "extras",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -58,7 +64,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'eb90102dc0d0bf135b97a88d97ded823')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9ce9a2ffe1dee8325bfbdddc695f9b37')"
     ]
   }
 }
