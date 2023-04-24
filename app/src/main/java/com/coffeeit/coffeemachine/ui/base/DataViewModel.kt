@@ -12,6 +12,7 @@ import com.coffeeit.coffeemachine.modle.CoffeeExtraInfo
 import com.coffeeit.coffeemachine.modle.CoffeeMachine
 import com.coffeeit.coffeemachine.modle.CoffeeOrder
 import com.coffeeit.coffeemachine.modle.event.ChooseEvent
+import com.coffeeit.coffeemachine.modle.event.NavigateEvent
 import com.coffeeit.coffeemachine.modle.state.DataState
 import com.coffeeit.coffeemachine.repository.MainRepository
 import com.coffeeit.coffeemachine.utils.EventBus
@@ -131,6 +132,21 @@ class DataViewModel : ViewModel() {
                             lastValue.subId = it.data.getSub()[0].getId()
                             lastValue.subName = it.data.getSub()[0].getName()
                         }
+                    }
+                }
+            }
+        }
+        viewModelScope.launch {
+            EventBus.subscribe<NavigateEvent> {
+                when (it) {
+                    is NavigateEvent.ToTypePage -> {
+                        navigateTo(it.v, R.id.overview_page_to_type_page, Bundle())
+                    }
+                    is NavigateEvent.ToSizePage -> {
+                        navigateTo(it.v, R.id.overview_page_to_size_page, Bundle())
+                    }
+                    is NavigateEvent.ToExtraPage -> {
+                        navigateTo(it.v, R.id.overview_page_to_extra_page, Bundle())
                     }
                 }
             }

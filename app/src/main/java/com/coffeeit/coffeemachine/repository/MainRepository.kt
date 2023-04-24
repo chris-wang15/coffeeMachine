@@ -20,9 +20,9 @@ object MainRepository {
     suspend fun getCoffeeMachineInfo(machineId: String): Flow<DataState<CoffeeMachine>> = flow {
         try {
             emit(DataState.Loading)
-//            val netData = RetrofitBuilder.getFakeData()
-            val netJob = RetrofitBuilder.api.getCoffeeMachine(machineId)
-            val netData = netJob.await()
+            val netData = RetrofitBuilder.getFakeData()
+//            val netJob = RetrofitBuilder.api.getCoffeeMachine(machineId)
+//            val netData = netJob.await()
             val machineData = CoffeeMachine.create(netData)
             emit(DataState.Success(machineData))
         } catch (e: Exception) {

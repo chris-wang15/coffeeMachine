@@ -8,7 +8,7 @@ import com.coffeeit.coffeemachine.ui.base.BaseListAdapter
 import com.coffeeit.coffeemachine.ui.base.BaseViewHolder
 
 class ExtraListAdapter(list: List<SelectionDataType>) : BaseListAdapter(list) {
-    override fun shouldShowEdit() = true
+    override fun shouldShowEdit() = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return ExtraViewHolder(

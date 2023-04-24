@@ -10,10 +10,9 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.coffeeit.coffeemachine.R
-import com.coffeeit.coffeemachine.modle.data.ExtraData
-import com.coffeeit.coffeemachine.modle.data.SelectionDataType
-import com.coffeeit.coffeemachine.modle.data.SubData
+import com.coffeeit.coffeemachine.modle.data.*
 import com.coffeeit.coffeemachine.modle.event.ChooseEvent
+import com.coffeeit.coffeemachine.modle.event.NavigateEvent
 import com.coffeeit.coffeemachine.utils.EventBus
 import com.coffeeit.coffeemachine.utils.dip2px
 import com.coffeeit.coffeemachine.utils.onClick
@@ -44,16 +43,33 @@ abstract class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
     fun bind(data: SelectionDataType, showEdit: Boolean) {
         detailTitle.text = data.getName()
         itemImg.setImageResource(provideResId(data.getName()))
-        if (showEdit && data.getSub().isNotEmpty()) {
-            initSubSelections(data, itemImg.context)
-            expand()
+        if (showEdit) {
             editButton.visibility = View.VISIBLE
             editButton.onClick {
+                it ?: return@onClick
+                itemView.autoDisposeScope.launch {
+                    val event = when (data) {
+                        is TypeData -> NavigateEvent.ToTypePage(it)
+                        is SizeData -> NavigateEvent.ToSizePage(it)
+                        is ExtraData -> NavigateEvent.ToExtraPage(it)
+                        else -> null
+                    }
+                    if (event != null) {
+                        EventBus.publish(event)
+                    }
+                }
+            }
+        } else {
+            editButton.visibility = View.GONE
+        }
+        if (data.getSub().isNotEmpty()) {
+            initSubSelections(data, itemImg.context)
+            expand()
+            itemView.onClick {
                 if (isExpanded) retract() else expand()
             }
         } else {
             retract()
-            editButton.visibility = View.GONE
             itemView.onClick {
                 notifyChosenEvent(data)
             }

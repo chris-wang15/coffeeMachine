@@ -61,6 +61,27 @@
             app:popUpTo="@id/OverviewFragment"
             app:popUpToInclusive="true">
         </action>
+        <action
+            android:id="@+id/overview_page_to_type_page"
+            app:destination="@id/TypeSelectionFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/TypeSelectionFragment"
+            app:popUpToInclusive="true">
+        </action>
+        <action
+            android:id="@+id/overview_page_to_size_page"
+            app:destination="@id/SizeSelectionFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/SizeSelectionFragment"
+            app:popUpToInclusive="true">
+        </action>
+        <action
+            android:id="@+id/overview_page_to_extra_page"
+            app:destination="@id/ExtraSelectionFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/ExtraSelectionFragment"
+            app:popUpToInclusive="true">
+        </action>
     </fragment>
 
     <fragment
