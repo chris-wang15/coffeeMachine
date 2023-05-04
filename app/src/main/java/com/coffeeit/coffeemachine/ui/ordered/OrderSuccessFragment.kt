@@ -15,11 +15,11 @@ import com.coffeeit.coffeemachine.modle.CoffeeOrder
 import com.coffeeit.coffeemachine.modle.state.DataState
 import com.coffeeit.coffeemachine.repository.MainRepository
 import com.coffeeit.coffeemachine.ui.base.BaseViewModel
+import com.coffeeit.coffeemachine.ui.base.collectLatestLifecycleFlow
 import com.coffeeit.coffeemachine.utils.onClick
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 /**
@@ -54,9 +54,9 @@ class OrderSuccessFragment : Fragment() {
 
     private fun tryGetOrderHistory() {
         lifecycleScope.launch(Dispatchers.IO) {
-            MainRepository.getOrderedCoffee().onEach { _state ->
+            MainRepository.getOrderedCoffee().collectLatest { _state ->
                 state.value = _state
-            }.launchIn(lifecycleScope)
+            }
         }
     }
 
@@ -70,15 +70,13 @@ class OrderSuccessFragment : Fragment() {
     }
 
     private fun observeState() {
-        lifecycleScope.launch {
-            state.collect {
-                when (it) {
-                    is DataState.Success -> {
-                        binding?.textviewFirst?.text = it.data.toString()
-                    }
-                    else -> binding?.textviewFirst?.text =
-                        MainApp.App.getText(R.string.show_ordered_history)
+        collectLatestLifecycleFlow(state) {
+            when (it) {
+                is DataState.Success -> {
+                    binding?.textviewFirst?.text = it.data.toString()
                 }
+                else -> binding?.textviewFirst?.text =
+                    MainApp.App.getText(R.string.show_ordered_history)
             }
         }
     }

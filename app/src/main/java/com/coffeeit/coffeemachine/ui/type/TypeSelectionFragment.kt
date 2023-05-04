@@ -6,18 +6,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.coffeeit.coffeemachine.R
 import com.coffeeit.coffeemachine.databinding.CoffeeSettingsFragmentBinding
 import com.coffeeit.coffeemachine.modle.CoffeeMachine
 import com.coffeeit.coffeemachine.modle.state.DataState
 import com.coffeeit.coffeemachine.ui.base.BaseFragment
+import com.coffeeit.coffeemachine.ui.base.collectLatestLifecycleFlow
 import com.coffeeit.coffeemachine.utils.onClick
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
 /**
  * This fragment is for choosing different type of coffee
@@ -65,14 +63,12 @@ class TypeSelectionFragment : BaseFragment() {
     }
 
     private fun observeState() {
-        lifecycleScope.launch {
-            dataModel.machineState.collect {
-                when (it) {
-                    is DataState.Success -> {
-                        renderList(it.data)
-                    }
-                    else -> {}
+        collectLatestLifecycleFlow(dataModel.machineState) {
+            when (it) {
+                is DataState.Success -> {
+                    renderList(it.data)
                 }
+                else -> {}
             }
         }
     }
