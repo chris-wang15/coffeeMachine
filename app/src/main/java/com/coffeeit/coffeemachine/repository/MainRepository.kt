@@ -17,7 +17,7 @@ object MainRepository {
 
     private val mapper = CacheMapper()
 
-    suspend fun getCoffeeMachineInfo(machineId: String): Flow<DataState<CoffeeMachine>> = flow {
+    fun getCoffeeMachineInfo(machineId: String): Flow<DataState<CoffeeMachine>> = flow {
         try {
             emit(DataState.Loading)
             val netData = RetrofitBuilder.getFakeData()
@@ -31,7 +31,7 @@ object MainRepository {
         }
     }
 
-    suspend fun getOrderedCoffee(): Flow<DataState<List<CoffeeOrder>>> = flow {
+    fun getOrderedCoffee(): Flow<DataState<List<CoffeeOrder>>> = flow {
         try {
             emit(DataState.Loading)
             val list = dao.getOrderList()
@@ -48,7 +48,7 @@ object MainRepository {
         RetrofitBuilder.sendCoffeeOrderToMachine(order)
     }
 
-    suspend fun tryConnectMachine(): Flow<DataState<String>> = flow {
+    fun tryConnectMachine(): Flow<DataState<String>> = flow {
         try {
             emit(DataState.Loading)
             val machineId = RetrofitBuilder.tryConnectMachine()

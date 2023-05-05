@@ -17,6 +17,7 @@ import com.coffeeit.coffeemachine.modle.state.DataState
 import com.coffeeit.coffeemachine.repository.MainRepository
 import com.coffeeit.coffeemachine.utils.EventBus
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -38,6 +39,9 @@ class DataViewModel : ViewModel() {
 
     var machineInfo: CoffeeMachine? = null
         private set
+
+    private var connectMachineJob: Job? = null
+    private var fetchMachineInfoJob: Job? = null
 
     init {
         viewModelScope.launch {
@@ -65,12 +69,12 @@ class DataViewModel : ViewModel() {
             return
         }
         if (_connectState.value is DataState.Rest || _connectState.value is DataState.Error) {
-            viewModelScope.launch(Dispatchers.IO) {
-                mainRepository.tryConnectMachine().onEach { state ->
-                    this@DataViewModel._connectState.value = state
-                }
-                    .launchIn(viewModelScope)
+            connectMachineJob?.cancel()
+            connectMachineJob = mainRepository.tryConnectMachine().onEach { state ->
+                this@DataViewModel._connectState.value = state
             }
+                .flowOn(Dispatchers.IO)
+                .launchIn(viewModelScope)
         } else {
             Log.e(TAG, "not connected to machine yet ${_connectState.value}")
         }
@@ -84,12 +88,12 @@ class DataViewModel : ViewModel() {
             Log.e(TAG, "Fetch on wrong state connect: $connect, machine: ${_machineState.value}")
             return
         }
-        viewModelScope.launch(Dispatchers.IO) {
-            mainRepository.getCoffeeMachineInfo(connect.data).onEach { state ->
-                this@DataViewModel._machineState.value = state
-            }
-                .launchIn(viewModelScope)
+        fetchMachineInfoJob?.cancel()
+        fetchMachineInfoJob = mainRepository.getCoffeeMachineInfo(connect.data).onEach { state ->
+            this@DataViewModel._machineState.value = state
         }
+            .flowOn(Dispatchers.IO)
+            .launchIn(viewModelScope)
     }
 
     private fun observeEvent() {
@@ -164,6 +168,14 @@ class DataViewModel : ViewModel() {
 
     fun resetExtraInfo() {
         coffeeOrder.extras = ArrayList()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        connectMachineJob?.cancel()
+        connectMachineJob = null
+        fetchMachineInfoJob?.cancel()
+        fetchMachineInfoJob = null
     }
 
     companion object {

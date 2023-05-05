@@ -20,6 +20,7 @@ import com.coffeeit.coffeemachine.utils.onClick
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 /**
@@ -53,10 +54,10 @@ class OrderSuccessFragment : Fragment() {
     }
 
     private fun tryGetOrderHistory() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            MainRepository.getOrderedCoffee().collectLatest { _state ->
-                state.value = _state
-            }
+        collectLatestLifecycleFlow(
+            MainRepository.getOrderedCoffee().flowOn(Dispatchers.IO)
+        ) { _state ->
+            state.value = _state
         }
     }
 
